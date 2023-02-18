@@ -2,8 +2,8 @@ from django.db import models
 
 
 class Author(models.Model):
-    first_name = models.CharField(verbose_name="Имя", max_length=40, unique=True)
-    last_name = models.CharField(verbose_name="Фамилия", max_length=40, unique=True)
+    first_name = models.CharField(verbose_name="Имя", max_length=40)
+    last_name = models.CharField(verbose_name="Фамилия", max_length=40)
     photo = models.ImageField(verbose_name="Фото", upload_to="images/", max_length=110, blank=True)
     date_of_creation = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
     date_of_editing = models.DateTimeField(verbose_name="Дата редактирования", auto_now=True)

@@ -4,7 +4,7 @@ from library.models.author import Author
 
 
 class Books(models.Model):
-    name = models.CharField(verbose_name="Название", max_length=60, unique=True)
+    name = models.CharField(verbose_name="Название", max_length=60)
     description = models.TextField(verbose_name="Описание", max_length=350, null=True)
     number_of_pages = models.IntegerField(verbose_name="Количество страниц")
     author = models.ManyToManyField(Author, verbose_name="Автор", max_length=200)
