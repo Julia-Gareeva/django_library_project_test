@@ -6,8 +6,7 @@ from library.models import Books, Author
 class BooksListSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(
         queryset=Author.objects.all(),
-        many=True,
-        read_only=True,
+        many=True,    # read_only=True
         slug_field="fullname"
     )
 
@@ -21,7 +20,6 @@ class BooksDetailSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(
         queryset=Author.objects.all(),
         many=True,
-        read_only=True,
         slug_field="fullname"
     )
 
@@ -34,7 +32,6 @@ class BooksCreateSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(
         queryset=Author.objects.all(),
         many=True,
-        read_only=True,
         slug_field="fullname"
     )
 
@@ -47,7 +44,6 @@ class BooksUpdateSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(
         queryset=Author.objects.all(),
         many=True,
-        read_only=True,
         slug_field="fullname"
     )
 
@@ -60,7 +56,6 @@ class BooksDeleteSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(
         queryset=Author.objects.all(),
         many=True,
-        read_only=True,
         slug_field="fullname"
     )
 
