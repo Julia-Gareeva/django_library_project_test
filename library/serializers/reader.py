@@ -1,10 +1,11 @@
 from rest_framework import serializers
 
-from library.models import Reader
+from library.models import Reader, Books
 
 
 class ReaderListSerializer(serializers.ModelSerializer):
     active_books = serializers.SlugRelatedField(
+        queryset=Books.objects.all(),
         many=True,
         read_only=True,
         slug_field="name"
@@ -18,6 +19,7 @@ class ReaderListSerializer(serializers.ModelSerializer):
 
 class ReaderDetailSerializer(serializers.ModelSerializer):
     active_books = serializers.SlugRelatedField(
+        queryset=Books.objects.all(),
         many=True,
         read_only=True,
         slug_field="name"
@@ -30,6 +32,7 @@ class ReaderDetailSerializer(serializers.ModelSerializer):
 
 class ReaderCreateSerializer(serializers.ModelSerializer):
     active_books = serializers.SlugRelatedField(
+        queryset=Books.objects.all(),
         many=True,
         read_only=True,
         slug_field="name"
@@ -42,6 +45,7 @@ class ReaderCreateSerializer(serializers.ModelSerializer):
 
 class ReaderUpdateSerializer(serializers.ModelSerializer):
     active_books = serializers.SlugRelatedField(
+        queryset=Books.objects.all(),
         many=True,
         read_only=True,
         slug_field="name"
@@ -54,6 +58,7 @@ class ReaderUpdateSerializer(serializers.ModelSerializer):
 
 class ReaderDeleteSerializer(serializers.ModelSerializer):
     active_books = serializers.SlugRelatedField(
+        queryset=Books.objects.all(),
         many=True,
         read_only=True,
         slug_field="name"
