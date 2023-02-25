@@ -7,7 +7,7 @@ class BooksListSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(
         many=True,
         read_only=True,
-        slug_field="first_name" + "last_name"
+        slug_field="fullname"
     )
 
     class Meta:
@@ -20,7 +20,7 @@ class BooksDetailSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(
         many=True,
         read_only=True,
-        slug_field="first_name" + "last_name"
+        slug_field="fullname"
     )
 
     class Meta:
@@ -32,7 +32,7 @@ class BooksCreateSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(
         many=True,
         read_only=True,
-        slug_field="first_name" + "last_name"
+        slug_field="fullname"
     )
 
     class Meta:
@@ -44,7 +44,7 @@ class BooksUpdateSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(
         many=True,
         read_only=True,
-        slug_field="first_name" + "last_name"
+        slug_field="fullname"
     )
 
     class Meta:
@@ -56,7 +56,7 @@ class BooksDeleteSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(
         many=True,
         read_only=True,
-        slug_field="first_name" + "last_name"
+        slug_field="fullname"
     )
 
     class Meta:
