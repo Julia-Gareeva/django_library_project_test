@@ -1,10 +1,10 @@
-from .author import AuthorAllView
-from .books import BooksAllView
-from .reader import ReaderAllView
+from .author import AuthorView
+from .books import BooksView
+from .reader import ReaderView
 
 
 __all__ = [
-    "AuthorAllView",
-    "BooksAllView",
-    "ReaderAllView",
+    "AuthorView",
+    "BooksView",
+    "ReaderView",
 ]

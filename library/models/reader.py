@@ -22,4 +22,8 @@ class Reader(models.Model):
         verbose_name_plural = "Читатели"
 
     def __str__(self):
-        return self.first_name
+        return f"{self.first_name} {self.last_name}"
+
+    @property
+    def fullname(self):
+        return f"{self.first_name} {self.last_name}"

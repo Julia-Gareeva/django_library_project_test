@@ -1,10 +1,10 @@
-from .author import AuthorDetailSerializer
-from .reader import ReaderDetailSerializer
-from .books import BooksDetailSerializer
+from .author import AuthorSerializer
+from .reader import ReaderSerializer
+from .books import BooksSerializer
 
 
 __all__ = [
-    "AuthorDetailSerializer",
-    "BooksDetailSerializer",
-    "ReaderDetailSerializer",
+    "AuthorSerializer",
+    "BooksSerializer",
+    "ReaderSerializer",
 ]

@@ -1,9 +1,9 @@
 from rest_framework.viewsets import ModelViewSet
 
 from library.models import Reader
-from library.serializers import ReaderDetailSerializer
+from library.serializers.reader import ReaderSerializer
 
 
-class ReaderAllView(ModelViewSet):
+class ReaderView(ModelViewSet):
     queryset = Reader.objects.all()
-    serializer_class = ReaderDetailSerializer
+    serializer_class = ReaderSerializer
