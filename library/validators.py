@@ -6,14 +6,15 @@ class PhoneValidator:
     def __call__(self, value):
         if len(str(value)) != 11:
             raise serializers.ValidationError("В номере должно быть 11 цифр.")
-        if len(value[:1]) != 7:
+
+        if int(list(str(value))[0]) != 7:
             raise serializers.ValidationError("Номер должен начинаться с 7.")
 
 
 class NumberOfPagesValidator:
     """Валидотор для проверки правильности заполнения количества страниц."""
     def __call__(self, value):
-        if int(value) < 0:
+        if int(value) < 0 and int(value) <= -1:
             raise serializers.ValidationError("Количество страниц не может быть отрицательным числом.")
 
 

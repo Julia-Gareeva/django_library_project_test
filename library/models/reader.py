@@ -12,8 +12,7 @@ class Reader(models.Model):
     last_name = models.CharField(verbose_name="Фамилия", max_length=40)
     phone_number = models.BigIntegerField(verbose_name="Номер телефона", null=True)
     status = models.CharField(verbose_name="Статус", max_length=10, choices=STATUS, default=ACTIVE)
-    active_books = models.ForeignKey(Books, verbose_name="Активные книги", blank=True, null=True,
-                                     on_delete=models.CASCADE)
+    active_books = models.ManyToManyField(Books, verbose_name="Активные книги", blank=True)
     date_of_creation = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
     date_of_editing = models.DateTimeField(verbose_name="Дата редактирования", auto_now=True)
 
