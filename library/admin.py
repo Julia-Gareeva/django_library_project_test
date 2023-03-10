@@ -18,6 +18,14 @@ class BooksAdmin(admin.ModelAdmin):
                     "date_of_editing")
     list_filter = ("name", "number_of_pages", "author", "count_of_books")
     search_fields = ["name"]
+    actions = ["change_num_books"]
+
+    @admin.action(description="Изменить наличие книг")
+    def change_num_books(self, request, queryset: QuerySet):
+        for count_of_books in queryset.get("count_of_books"):
+            if count_of_books >= 1:
+                count = queryset.update(count_of_books=0)
+                self.message_user(request, f"Значение наличия книг в библиотеке было изменено у {count} книг.")
 
 
 class ReaderAdmin(admin.ModelAdmin):
@@ -25,7 +33,7 @@ class ReaderAdmin(admin.ModelAdmin):
                     "date_of_editing")
     list_filter = ("first_name", "last_name", "status")
     search_fields = ("first_name", "last_name")
-    actions = ["status_reader", "delete_all_books"]
+    actions = ["status_reader"]
 
     @admin.action(description="Поменять статус читателя")
     def status_reader(self, request, queryset: QuerySet):
@@ -37,11 +45,11 @@ class ReaderAdmin(admin.ModelAdmin):
             count = queryset.update(status="active")
             self.message_user(request, f"Статус поменялся у {count} пользователей.")
 
-    @admin.action(description="Изменить наличие книг у пользователя")
+    @admin.action(description="Удалить все книги у пользователя")
     def delete_all_books(self, request, queryset: QuerySet):
-        for obj in queryset:
-            obj.active_books.clear()
-            self.message_user(request, f"Наличие книг изменено у {obj} читателей.")
+        if queryset.update(active_books="name"):
+            count = queryset.delete()
+            self.message_user(request, f"Активные книги были удалены у {count} читателей.")
 
 
 # экшены:

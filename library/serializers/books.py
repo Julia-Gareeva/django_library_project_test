@@ -10,8 +10,9 @@ class BooksSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(
         many=True,
         queryset=Author.objects.all(),
-        slug_field="fullname",
+        slug_field=[{"first_name", "last_name"}]
     )
+    author_add = serializers.SlugRelatedField
 
 
     # def get_or_create_author(self, request, book_data):
