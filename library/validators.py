@@ -23,3 +23,10 @@ class BookNotFoundValidator:
     def __call__(self, value):
         if value == 0:
             raise serializers.ValidationError("Данной книги нет в наличии.")
+
+
+    # def get_or_create_author(self, request, book_data):
+    #     for author in book_data["book"]:
+    #         author_obj, _ = Author.objects.get_or_create(name=author)
+    #         self.object.Author.add(author_obj)
+    #         self.message_user(request, f"Автор успешно добавлен.")
