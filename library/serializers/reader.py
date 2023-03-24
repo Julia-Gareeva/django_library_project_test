@@ -10,7 +10,6 @@ class ReaderSerializer(serializers.ModelSerializer):
     active_books = serializers.SlugRelatedField(
         queryset=Books.objects.all(),
         validators=[BookNotFoundValidator()],
-        many=True,
         slug_field="name"
     )
 

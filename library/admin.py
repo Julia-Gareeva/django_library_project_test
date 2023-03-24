@@ -46,9 +46,11 @@ class ReaderAdmin(admin.ModelAdmin):
 
     @admin.action(description="Удалить все книги у пользователя")
     def delete_all_books(self, request, queryset: QuerySet):
-        if queryset.update(active_books="active_books"):
-            count = queryset.update(active_books=0)
-            self.message_user(request, f"Активные книги были удалены у {count} читателей.")
+        if queryset.values_list("active_books", flat=True,).order_by("pk"):  # если у читателя есть какие-то активные книги
+            list(queryset.values_list("active_books", flat=True)).clear()
+            self.message_user(request, "Список книг удален у пользователя/ей.")
+        else:  # если у читателя нет активных книг
+            pass
 
 
 admin.site.register(Author, AuthorAdmin)

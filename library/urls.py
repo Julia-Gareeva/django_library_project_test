@@ -10,5 +10,3 @@ router.register(r"reader", views.ReaderView),
 
 urlpatterns = [
 ] + router.urls
-
-urlpatterns += router.urls
