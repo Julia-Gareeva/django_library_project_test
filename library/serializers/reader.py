@@ -8,6 +8,7 @@ class ReaderSerializer(serializers.ModelSerializer):
     phone_number = serializers.IntegerField(validators=[PhoneValidator()])
 
     active_books = serializers.SlugRelatedField(
+        many=True,
         queryset=Books.objects.all(),
         validators=[BookNotFoundValidator()],
         slug_field="name"
