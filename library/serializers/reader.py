@@ -14,6 +14,13 @@ class ReaderSerializer(serializers.ModelSerializer):
         slug_field="name"
     )
 
+    def create(self, validated_data):
+        reader = super().create(validated_data)
+
+        reader.set_password(reader.password)
+        reader.save()
+        return reader
+
     class Meta:
         model = Reader
         fields = "__all__"
