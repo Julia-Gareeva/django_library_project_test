@@ -29,8 +29,7 @@ class BooksAdmin(admin.ModelAdmin):
 
 
 class ReaderAdmin(admin.ModelAdmin):
-    list_display = ("first_name", "last_name", "phone_number", "status", "date_of_creation",
-                    "date_of_editing")
+    list_display = ("first_name", "last_name", "phone_number", "status", "date_of_editing")
     list_filter = ("first_name", "last_name", "status")
     search_fields = ("first_name", "last_name")
     actions = ["status_reader", "delete_all_books"]
