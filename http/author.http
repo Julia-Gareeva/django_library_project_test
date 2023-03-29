@@ -1,67 +1,48 @@
 # получать данные об объекте могут все
-GET http://localhost:5050/books/
+GET http://localhost:5050/author/
 Accept: application/json
 Content-Type: application/json
 
 ###
 
 # получать данные об объекте могут все
-GET http://localhost:5050/books/2/
+GET http://localhost:5050/author/2/
 Accept: application/json
 Content-Type: application/json
 
 ###
 
 # создавать объекты может только администратор и авторизованный пользователь
-POST http://localhost:5050/books/
+POST http://localhost:5050/author/
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMTA4OTIzLCJpYXQiOjE2ODAxMDg2MjMsImp0aSI6IjI2NGY2NDcxNWQ1NjQwNjY4NDQ1ODI5M2M0YTFmY2M4IiwidXNlcl9pZCI6NH0.8mB-CjBMbULFy9bvMXA1LnJWQyrHYW1OYUJiJ00EhqE
 
 {
-  "name": "про здоровье",
-  "description": "бла, бла, бла, бла",
-  "number_of_pages": "335",
-  "author": "Гоша",
-  "count_of_books": "2"
 }
 
 ###
 
 # обновлять объекты может только администратор и авторизованный пользователь
-PUT http://localhost:5050/books/
+PUT http://localhost:5050/author/
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMTA5MzAzLCJpYXQiOjE2ODAxMDkwMDMsImp0aSI6IjE2MWFmZWRkYzFlNzRhYjZiMjc1MTM0MTZkMDBmYWFjIiwidXNlcl9pZCI6NH0.QefIPNU2Ms2I-Wz3nrDlfe81U0mb0U4WWwCD6VjuPzI
 
 {
-  "id": 2,
-  "number_of_pages": 700,
-  "author": "Гоша",
-  "name": "Books some",
-  "description": "vfvfvfv",
-  "count_of_books": 13,
-  "date_of_creation": "2023-03-27T04:08:09.769045Z",
-  "date_of_editing": "2023-03-27T04:32:13.643024Z"
 }
 
 ###
 
 # обновлять объекты может только администратор и авторизованный пользователь
-PATCH http://localhost:5050/books/2/
+PATCH http://localhost:5050/author/2/
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMTA5NzY1LCJpYXQiOjE2ODAxMDk0MjEsImp0aSI6IjM0MmI0NWE5NmJiNzQyOTY4M2VjOGI4ZGE1ZWQyNzVhIiwidXNlcl9pZCI6NH0.JW2rCrfbhGjpaIuI8B8Xea5uXGk02sWLgl_uFw4VBIw
 
 {
-  "id": 2,
-  "number_of_pages": 700,
-  "author": "Гоша",
-  "name": "Books some",
-  "description": "vfvfvfv",
-  "count_of_books": "13"
 }
 
 ###
 
 # удалять объекты может только администратор и авторизованный пользователь
-DELETE http://localhost:5050/books/5/
+DELETE http://localhost:5050/author/5/
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMTA5MzAzLCJpYXQiOjE2ODAxMDkwMDMsImp0aSI6IjE2MWFmZWRkYzFlNzRhYjZiMjc1MTM0MTZkMDBmYWFjIiwidXNlcl9pZCI6NH0.QefIPNU2Ms2I-Wz3nrDlfe81U0mb0U4WWwCD6VjuPzI
+Authorization: Bearer ...

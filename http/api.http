@@ -1,0 +1,21 @@
+# Получение токенов access и refresh
+POST http://localhost:5050/api/token/
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "defaultadmin"
+}
+
+###
+
+# Получение refresh токена
+POST http://localhost:5050/api/token/refresh/
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4MDE5NTgyMSwiaWF0IjoxNjgwMTA5NDIxLCJqdGkiOiIxNzk5YTdhN2U1ZmU0NGM2YTI4N2JmNmQyODg1OWRjNCIsInVzZXJfaWQiOjR9.3BeerFSwohRq02-imbA03TanfRmsSKWhF4pdN-caAYI"
+}
