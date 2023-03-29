@@ -15,7 +15,7 @@ class PermissionPolicyMixin(BasePermission):
 
 
 class IsOwner(BasePermission):
-    message = "Нет доступа."
+    message = "Нет доступа. Вы запрашиваете не свои данные."
 
     def has_permission(self, request, view):
         if request.user.id == int(view.kwargs["pk"]):

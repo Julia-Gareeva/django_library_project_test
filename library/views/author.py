@@ -11,8 +11,8 @@ class AuthorView(PermissionPolicyMixin, ModelViewSet):
     serializer_class = AuthorSerializer
     permission_classes_per_method = {
         "list": [AllowAny],
-        "create": [IsAuthenticated, IsAdminUser],
-        "update": [IsAuthenticated, IsAdminUser],
-        "destroy": [IsAuthenticated, IsAdminUser],
+        "create": [IsAuthenticated or IsAdminUser],
+        "update": [IsAuthenticated or IsAdminUser],
+        "destroy": [IsAuthenticated or IsAdminUser],
         "retrieve": [AllowAny],
     }

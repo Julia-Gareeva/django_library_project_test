@@ -10,9 +10,9 @@ class ReaderView(PermissionPolicyMixin, ModelViewSet):
     queryset = Reader.objects.all()
     serializer_class = ReaderSerializer
     permission_classes_per_method = {
-        "list": [IsAuthenticated, IsAdminUser, IsOwner],
+        "list": [IsAuthenticated, IsAdminUser or IsOwner],
         "create": [AllowAny],
-        "update": [IsAuthenticated, IsAdminUser, IsOwner],
-        "destroy": [IsAuthenticated, IsAdminUser, IsOwner],
-        "retrieve": [IsAuthenticated, IsAdminUser, IsOwner],
+        "update": [IsAuthenticated, IsAdminUser or IsOwner],
+        "destroy": [IsAuthenticated, IsAdminUser or IsOwner],
+        "retrieve": [IsAuthenticated, IsAdminUser or IsOwner],
     }

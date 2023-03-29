@@ -1,0 +1,102 @@
+# получать данные об объекте может администратор и пользователь, который запрашивает свои данные
+GET http://localhost:5050/reader/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMDgzNjc5LCJpYXQiOjE2ODAwODMzNzksImp0aSI6ImZkN2JhNTlkYmEzYjQ5MzE4NDY0ZDI3NmU3NjJkN2M3IiwidXNlcl9pZCI6NH0.DyFqV1mgPDOP2wRPGi3yHVva3FTbO9JHbKM8Aermn2M
+
+###
+
+# получать данные об объекте может администратор и пользователь, который запрашивает свои данные
+GET http://localhost:5050/reader/4
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMDgzNjc5LCJpYXQiOjE2ODAwODMzNzksImp0aSI6ImZkN2JhNTlkYmEzYjQ5MzE4NDY0ZDI3NmU3NjJkN2M3IiwidXNlcl9pZCI6NH0.DyFqV1mgPDOP2wRPGi3yHVva3FTbO9JHbKM8Aermn2M
+
+###
+
+# создавать объекты могут все пользователи без авторизации
+POST http://localhost:5050/reader/
+Accept: application/json
+
+{
+  "phone_number": 73473847384,
+  "active_books": [
+    "Books some"
+  ],
+  "is_superuser": true,
+  "username": "admin",
+  "first_name": "Юлия",
+  "last_name": "Гареева",
+  "email": "Ghdsgh13@yandex.ru",
+  "is_staff": true,
+  "is_active": true,
+  "status": "inactive",
+}
+
+###
+
+# обновлять объекты может администратор и пользователь, который изменяет свои данные
+PUT http://localhost:5050/reader/change/4/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMDgzNDY0LCJpYXQiOjE2ODAwODMxNjQsImp0aSI6IjgyNDhlZjJiYjJhZTRkYjNhNGYyN2E1ZDczOGVjY2JkIiwidXNlcl9pZCI6NH0.0X8NDFhe8d16zlbZaSUYH73MwNcETGki3prpzJ6IAu8
+
+{
+    "phone_number": 73473888877,
+    "active_books": [],
+    "password": "123456rewq",
+    "is_superuser": true,
+    "username": "ENG1",
+    "first_name": "eng1",
+    "last_name": "eng1",
+    "email": "engujjj9888@yandex.ru",
+    "is_staff": false,
+    "is_active": true,
+    "status": "inactive",
+    "groups": [],
+    "user_permissions": []
+}
+
+###
+
+# обновлять объекты может администратор и пользователь, который изменяет свои данные
+PATCH http://localhost:5050/reader/4/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMDgzNjc5LCJpYXQiOjE2ODAwODMzNzksImp0aSI6ImZkN2JhNTlkYmEzYjQ5MzE4NDY0ZDI3NmU3NjJkN2M3IiwidXNlcl9pZCI6NH0.DyFqV1mgPDOP2wRPGi3yHVva3FTbO9JHbKM8Aermn2M
+
+{
+  "phone_number": 73473847384,
+  "active_books": [
+    "Books some"
+  ],
+  "password": "pbkdf2_sha256$390000$7WNraNMGM4TAlr2rLYCPxb$gTumXbiUr91BgUL4HhUBfk7CXOs5fzqu3Qv0ui1pDjY=",
+  "last_login": "2023-03-29T07:38:01Z",
+  "is_superuser": true,
+  "username": "admin",
+  "first_name": "Юлия",
+  "last_name": "Гареева",
+  "email": "Ghdsgh13@yandex.ru",
+  "is_staff": true,
+  "is_active": true,
+  "status": "inactive",
+  "date_of_editing": "2023-03-29T07:45:33.865259Z",
+  "groups": [],
+  "user_permissions": [
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+  ]
+}
+
+###
+
+# удалять объекты может администратор и пользователь, который удаляет свои данные
+DELETE http://localhost:5050/reader/9/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMDgzNjc5LCJpYXQiOjE2ODAwODMzNzksImp0aSI6ImZkN2JhNTlkYmEzYjQ5MzE4NDY0ZDI3NmU3NjJkN2M3IiwidXNlcl9pZCI6NH0.DyFqV1mgPDOP2wRPGi3yHVva3FTbO9JHbKM8Aermn2M

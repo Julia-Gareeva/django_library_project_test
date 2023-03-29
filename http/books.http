@@ -1,0 +1,57 @@
+# получать данные об объекте могут все
+GET http://localhost:5050/books/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "example64@gmail.com",
+  "password": "cW@3JhD32244S"
+}
+
+###
+
+# создавать объекты может только администратор и авторизованный пользователь
+POST http://localhost:5050/books/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "example64@gmail.com",
+  "password": "cW@3JhD32244S"
+}
+
+###
+
+# обновлять объекты может только администратор и авторизованный пользователь
+PUT http://localhost:5050/books/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "example64@gmail.com",
+  "password": "cW@3JhD32244S"
+}
+
+###
+
+# обновлять объекты может только администратор и авторизованный пользователь
+PATCH http://localhost:5050/books/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "example64@gmail.com",
+  "password": "cW@3JhD32244S"
+}
+
+###
+
+# удалять объекты может только администратор и авторизованный пользователь
+DELETE http://localhost:5050/books/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "example64@gmail.com",
+  "password": "cW@3JhD32244S"
+}

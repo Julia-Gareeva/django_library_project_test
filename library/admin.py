@@ -14,7 +14,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 
 class BooksAdmin(admin.ModelAdmin):
-    list_display = ("name", "number_of_pages", "count_of_books", "date_of_creation",
+    list_display = ("name", "number_of_pages", "author", "count_of_books", "date_of_creation",
                     "date_of_editing")
     list_filter = ("name", "number_of_pages", "author", "count_of_books")
     search_fields = ["name"]
