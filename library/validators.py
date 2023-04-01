@@ -20,13 +20,17 @@ class NumberOfPagesValidator:
 
 class BookNotFoundValidator:
     """Валидотор проверки наличия книг в библиотеке."""
-    def __call__(self, value):
-        if value == 0:
+    def count_books(self, val):
+        if val.objects.Books.count_of_books >= 1:
+            return val
+
+    def __call__(self, count_books):
+        if int(count_books) == 0:
             raise serializers.ValidationError("Данной книги нет в наличии.")
 
 
-    # def get_or_create_author(self, request, book_data):
-    #     for author in book_data["book"]:
-    #         author_obj, _ = Author.objects.get_or_create(name=author)
-    #         self.object.Author.add(author_obj)
-    #         self.message_user(request, f"Автор успешно добавлен.")
+class BookNotFourValidator:
+    """Валидатор для проверки максимально допустимого количества книг."""
+    def __call__(self, value):
+        if list(str(value)) > list(str(3)):
+            raise serializers.ValidationError("Не допустимо добавление больше 3 книг.")
