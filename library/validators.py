@@ -20,7 +20,8 @@ class NumberOfPagesValidator:
 
 class BookNotFoundValidator:
     """Валидотор проверки наличия книг в библиотеке."""
-    def count_books(self, val):
+    @staticmethod
+    def count_books(val):
         if val.objects.Books.count_of_books >= 1:
             return val
 
@@ -32,5 +33,5 @@ class BookNotFoundValidator:
 class BookNotFourValidator:
     """Валидатор для проверки максимально допустимого количества книг."""
     def __call__(self, value):
-        if list(str(value)) > list(str(3)):
+        if str(value) > 3:
             raise serializers.ValidationError("Не допустимо добавление больше 3 книг.")

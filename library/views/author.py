@@ -6,14 +6,13 @@ from library.serializers import AuthorSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 
 
-class AuthorView(ModelViewSet):
+class AuthorView(PermissionPolicyMixin, ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
-
-    # permission_classes_per_method = {
-    #     "list": [AllowAny],
-    #     "create": [IsAuthenticated or IsAdminUser], PermissionPolicyMixin,
-    #     "update": [IsAuthenticated or IsAdminUser],
-    #     "destroy": [IsAuthenticated or IsAdminUser],
-    #     "retrieve": [AllowAny],
-    # }
+    permission_classes_per_method = {
+        "list": [AllowAny],
+        "create": [IsAuthenticated or IsAdminUser],
+        "update": [IsAuthenticated or IsAdminUser],
+        "destroy": [IsAuthenticated or IsAdminUser],
+        "retrieve": [AllowAny],
+    }
