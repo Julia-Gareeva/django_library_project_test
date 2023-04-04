@@ -14,6 +14,11 @@ class Reader(AbstractUser):
     active_books = models.ManyToManyField(Books, verbose_name="Активные книги", blank=True)
     date_of_editing = models.DateTimeField(verbose_name="Дата редактирования", auto_now=True)
 
+    def display_books(self):
+        return ', '.join([books.name for books in self.active_books.all()])
+
+    display_books.short_description = "Активные книги"
+
     class Meta:
         verbose_name = "Читатель"
         verbose_name_plural = "Читатели"

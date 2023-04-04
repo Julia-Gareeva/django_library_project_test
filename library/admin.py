@@ -20,6 +20,11 @@ class BooksAdmin(admin.ModelAdmin):
     search_fields = ["name"]
     actions = ["change_num_books"]
 
+    def author_link(self, obj):
+        author = obj.author
+        url = reverse("admin:library_author_changelist")
+        return format_html()
+
     @admin.action(description="Изменить наличие книг")
     def change_num_books(self, request, queryset: QuerySet):
         if queryset.update(count_of_books=int()):
@@ -29,7 +34,7 @@ class BooksAdmin(admin.ModelAdmin):
 
 
 class ReaderAdmin(admin.ModelAdmin):
-    list_display = ("first_name", "last_name", "phone_number", "status", "date_of_editing")
+    list_display = ("first_name", "last_name", "phone_number", "status", "display_books", "date_of_editing")
     list_filter = ("first_name", "last_name", "status")
     search_fields = ("first_name", "last_name")
     actions = ["status_reader", "delete_all_books"]
