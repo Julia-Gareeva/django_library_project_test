@@ -18,20 +18,11 @@ class NumberOfPagesValidator:
             raise serializers.ValidationError("Количество страниц не может быть отрицательным числом.")
 
 
-class BookNotFoundValidator:
+class BookValidator:
     """Валидотор проверки наличия книг в библиотеке."""
-    @staticmethod
-    def count_books(val):
-        if val.objects.Books.count_of_books >= 1:
-            return val
-
-    def __call__(self, count_books):
-        if int(count_books) == 0:
+    def __call__(self, value):
+        if int(value) == 0:
             raise serializers.ValidationError("Данной книги нет в наличии.")
 
-
-class BookNotFourValidator:
-    """Валидатор для проверки максимально допустимого количества книг."""
-    def __call__(self, value):
-        if str(value) > 3:
+        if len(value) > 3:
             raise serializers.ValidationError("Не допустимо добавление больше 3 книг.")

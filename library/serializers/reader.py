@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from library.models import Reader, Books
-from library.validators import PhoneValidator, BookNotFoundValidator, BookNotFourValidator
+from library.validators import PhoneValidator, BookValidator
 
 
 class ReaderSerializer(serializers.ModelSerializer):
@@ -11,7 +11,7 @@ class ReaderSerializer(serializers.ModelSerializer):
         many=True,
         queryset=Books.objects.all(),
         slug_field="name",
-        validators=[BookNotFoundValidator(), BookNotFourValidator()]
+        validators=[BookValidator()]
     )
 
     def create(self, validated_data):
