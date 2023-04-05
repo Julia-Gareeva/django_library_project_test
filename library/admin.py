@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.db.models import QuerySet
+from django.urls import reverse
+from django.utils.html import format_html
 
 from library.models import Author, Books, Reader
 
@@ -14,16 +16,18 @@ class AuthorAdmin(admin.ModelAdmin):
 
 
 class BooksAdmin(admin.ModelAdmin):
-    list_display = ("name", "number_of_pages", "author", "count_of_books", "date_of_creation",
+    list_display = ("name", "number_of_pages", "author_link", "count_of_books", "date_of_creation",
                     "date_of_editing")
-    list_filter = ("name", "number_of_pages", "author", "count_of_books")
+    list_filter = ("name", "number_of_pages", "author_link", "count_of_books")
     search_fields = ["name"]
     actions = ["change_num_books"]
 
     def author_link(self, obj):
         author = obj.author
-        url = reverse("admin:library_author_changelist")
-        return format_html()
+        url = reverse("admin:library_author_changelist") + str(author.pk)
+        return format_html(f"<a href='{url}'>{author}</a>")
+
+    author_link.short_description = "Автор"
 
     @admin.action(description="Изменить наличие книг")
     def change_num_books(self, request, queryset: QuerySet):
