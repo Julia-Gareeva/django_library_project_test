@@ -18,6 +18,12 @@ class ReaderSerializer(serializers.ModelSerializer):
         reader = super().create(validated_data)
 
         reader.set_password(reader.password)
+        reader.serializable_value(reader.active_books)
+        for reader.active_books in validated_data:
+            if reader.active_books == 0:
+                raise serializers.ValidationError("Данной книги нет в наличии.")
+            if reader.active_books > 3:
+                raise serializers.ValidationError("Не допустимо добавление больше 3 книг.")
         reader.save()
         return reader
 
