@@ -1,14 +1,14 @@
 # получать данные об объекте может администратор и пользователь, который запрашивает свои данные
 GET http://localhost:5050/reader/
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMTAxNjg0LCJpYXQiOjE2ODAxMDEzODQsImp0aSI6IjRhYWVhYzczMThhODRhYmQ4ZDNjODQ3NTZjNzYxNjg5IiwidXNlcl9pZCI6NH0.lAxWDQvWm2B5-I7tSJnhT6u7zvk9KMJG5TawtYRWM5A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgxMTI0NDUzLCJpYXQiOjE2ODExMjQxNTMsImp0aSI6IjNmMzU3YTRkMjM3MDQ1NGFhNmYyMjFhMmVkZTEwMjllIiwidXNlcl9pZCI6NH0.QtzBOKs7ynvw-N-7YZiRSrFo7tPT-txThTPM5Z-GLoA
 
 ###
 
 # получать данные об объекте может администратор и пользователь, который запрашивает свои данные
 GET http://localhost:5050/reader/4
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMDgzNjc5LCJpYXQiOjE2ODAwODMzNzksImp0aSI6ImZkN2JhNTlkYmEzYjQ5MzE4NDY0ZDI3NmU3NjJkN2M3IiwidXNlcl9pZCI6NH0.DyFqV1mgPDOP2wRPGi3yHVva3FTbO9JHbKM8Aermn2M
+Authorization: Bearer
 
 ###
 
@@ -17,18 +17,22 @@ POST http://localhost:5050/reader/
 Accept: application/json
 
 {
-  "phone_number": 73473847384,
+  "phone_number": "78007657033",
   "active_books": [
-    "Books some"
-  ],
-  "is_superuser": true,
-  "username": "admin",
-  "first_name": "Юлия",
-  "last_name": "Гареева",
-  "email": "Ghdsgh13@yandex.ru",
-  "is_staff": true,
+    "Books some",
+    "Книга1",
+    "Какая-то книга",
+    "hf7"
+    ],
+  "is_superuser": false,
+  "username": "xnjckschjds",
+  "first_name": "Кристина",
+  "last_name": "Калинкина",
+  "password": "bcndbhj17",
+  "email": "Kristina1332@mail.ru",
+  "is_staff": false,
   "is_active": true,
-  "status": "inactive",
+  "status": "active"
 }
 
 ###
@@ -36,7 +40,7 @@ Accept: application/json
 # обновлять объекты может администратор и пользователь, который изменяет свои данные
 PUT http://localhost:5050/reader/4/
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMTAxNjg0LCJpYXQiOjE2ODAxMDEzODQsImp0aSI6IjRhYWVhYzczMThhODRhYmQ4ZDNjODQ3NTZjNzYxNjg5IiwidXNlcl9pZCI6NH0.lAxWDQvWm2B5-I7tSJnhT6u7zvk9KMJG5TawtYRWM5A
+Authorization: Bearer
 
 {
     "phone_number": 73473847384,
@@ -60,7 +64,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 # обновлять объекты может администратор и пользователь, который изменяет свои данные
 PATCH http://localhost:5050/reader/4/
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMTAxNjg0LCJpYXQiOjE2ODAxMDEzODQsImp0aSI6IjRhYWVhYzczMThhODRhYmQ4ZDNjODQ3NTZjNzYxNjg5IiwidXNlcl9pZCI6NH0.lAxWDQvWm2B5-I7tSJnhT6u7zvk9KMJG5TawtYRWM5A
+Authorization: Bearer
 
 {
     "phone_number": 73473847384,
@@ -84,4 +88,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 # удалять объекты может администратор и пользователь, который удаляет свои данные
 DELETE http://localhost:5050/reader/9/
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMDgzNjc5LCJpYXQiOjE2ODAwODMzNzksImp0aSI6ImZkN2JhNTlkYmEzYjQ5MzE4NDY0ZDI3NmU3NjJkN2M3IiwidXNlcl9pZCI6NH0.DyFqV1mgPDOP2wRPGi3yHVva3FTbO9JHbKM8Aermn2M
+Authorization: Bearer

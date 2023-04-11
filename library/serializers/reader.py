@@ -1,30 +1,25 @@
 from rest_framework import serializers
 
 from library.models import Reader, Books
-from library.validators import PhoneValidator, BookValidator
+from library.validators import PhoneValidator, BookNotFourValidator, BookNotFoundValidator
 
 
 class ReaderSerializer(serializers.ModelSerializer):
     phone_number = serializers.IntegerField(validators=[PhoneValidator()])
+    books_validators = [BookNotFoundValidator(), BookNotFourValidator()]
 
     active_books = serializers.SlugRelatedField(
         many=True,
         queryset=Books.objects.all(),
         slug_field="name",
-        validators=[BookValidator()]
+        validators=[books_validators],
     )
 
     def create(self, validated_data):
         reader = super().create(validated_data)
-
         reader.set_password(reader.password)
-        reader.serializable_value(reader.active_books)
-        for reader.active_books in validated_data:
-            if reader.active_books == 0:
-                raise serializers.ValidationError("Данной книги нет в наличии.")
-            if reader.active_books > 3:
-                raise serializers.ValidationError("Не допустимо добавление больше 3 книг.")
         reader.save()
+
         return reader
 
     def update(self, instance, validate_data):
