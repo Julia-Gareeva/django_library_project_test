@@ -2,12 +2,11 @@ from rest_framework import serializers
 
 from library.models import Reader, Books
 from library.validators import PhoneValidator
+from django.db import transaction
 
 
 class ReaderSerializer(serializers.ModelSerializer):
     phone_number = serializers.IntegerField(validators=[PhoneValidator()])
-    MAX_BOOKS = 3
-    fullname = {" ".join([reader.first_name and reader.last_name for reader in Reader.objects.all()])}
 
     active_books = serializers.SlugRelatedField(
         many=True,
@@ -15,43 +14,50 @@ class ReaderSerializer(serializers.ModelSerializer):
         slug_field="name",
     )
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.books = {", ".join([books.name for books in self.active_books.get_value("name")])}
-
-    def add_book(self, name, books):
-        if name not in books:
-            print(f"{name} недоступно в библиотеке.")
-            return
-        if len(self.books) >= self.MAX_BOOKS:
-            print(f"У {self.fullname} уже есть максимальное количество книг.")
-            return
-        self.books.add(name)
-        print(f"{name} добавлено в коллекцию активных книг {self.fullname}.")
-
     def create(self, validated_data):
-        reader = super().create(validated_data)
+        active_books = validated_data.pop("active_books", None)
+        reader = Reader.objects.create(**validated_data)
+
+        # Проверка, что добаляется не более 3 активных книг.
+        if len(validated_data.get("active_books", [])) > 3:
+            raise serializers.ValidationError("У читателя может быть не более 3 активных книг.")
+
+        # Проверка, что в модели Books есть хотя бы 1 книга.
+        if Books.objects.aggregate(int(sum("count_of_books")))["count_of_books__sum"] == 0:
+            raise serializers.ValidationError("В библиотеке должна быть хотя бы 1 книга.")
+
+        if active_books:
+            for book_name in active_books:
+                books = Books.objects.get(name=book_name)
+                books.count_of_books -= 1
+                books.save()
+
         reader.set_password(reader.password)
         reader.save()
-
         return reader
 
-    # def update(self, instance, validate_data):
-    #     if validate_data[Books.name]:
-    #         # Уменьшаем количество экземпляров книги, если книга добавляется в актив читателя.
-    #         for book in validate_data[Books.name]:
-    #             if book not in instance.Books.all():
-    #                 if book.quantity > 0:
-    #                     book.quantity -= 1
-    #                     book.save()
-    #                 else:
-    #                     raise serializers.ValidationError(f"Книга {Books.name} отсутствует.")
-    #         # Увеличиваем количество экземпляров книги, если книга удаляется из актива читателя.
-    #         for book in instance.Books.all():
-    #             if book not in validate_data[Books.name]:
-    #                 book.quantity += 1
-    #                 book.save()
-    #     return super().update(instance, validate_data)
+    @transaction.atomic
+    def update(self, instance, validated_data):
+        active_books = validated_data.pop('active_books', [])
+
+        # Update reader instance
+        reader = super().update(instance, validated_data)
+
+        # Удалить книги, которых нет в active_books
+        for books in instance.active_books.exclude(name__in=active_books):
+            books.count_of_books += 1
+            books.save()
+            reader.active_books.remove(books)
+
+        # Добавление новых книг в active_books
+        for name in active_books:
+            books = Books.objects.get(name=name)
+            if books not in instance.active_books.all():
+                books.count_of_books -= 1
+                books.save()
+                reader.active_books.add(books)
+
+        return reader
 
     class Meta:
         model = Reader
